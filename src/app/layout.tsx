@@ -1,10 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Roboto_Mono } from 'next/font/google';
-
-const GeistSans = Inter({ subsets: ['latin'] });
-const GeistMono = Roboto_Mono({ subsets: ['latin'] });
 import MainNavigation from './components/layout/header';
 import Footer from './components/layout/footer';
 
@@ -20,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.className} ${GeistMono.className} scroll-smooth`}>
+    <html lang="en" className="scroll-smooth">
       <body className="min-h-screen flex flex-col antialiased">
         <MainNavigation />
         <main className="flex-grow">{children}</main>
