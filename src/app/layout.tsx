@@ -5,7 +5,7 @@ import { Roboto_Mono } from 'next/font/google';
 
 const GeistSans = Inter({ subsets: ['latin'] });
 const GeistMono = Roboto_Mono({ subsets: ['latin'] });
-import Header from './components/layout/header';
+import MainNavigation from './components/layout/header';
 import Footer from './components/layout/footer';
 
 export const metadata: Metadata = {
@@ -20,9 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.className} ${GeistMono.className}`}>
-      <body className="min-h-screen flex flex-col">
-        <Header />
+    <html lang="en" className={`${GeistSans.className} ${GeistMono.className} scroll-smooth`}>
+      <body className="min-h-screen flex flex-col antialiased">
+        <MainNavigation />
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>
