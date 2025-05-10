@@ -115,15 +115,6 @@ const MainNavigation = () => {
                   />
                 </Link>
               ))}
-              
-              {/* CTA Button */}
-              <a 
-                href="tel:+919496899999"
-                className="ml-4 px-5 py-2 bg-primary text-primary-foreground rounded-md transition-all duration-300 transform hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                aria-label="Call us at +91 94968 99999"
-              >
-                Get in Touch
-              </a>
             </div>
 
             {/* Mobile Navigation Toggle */}
