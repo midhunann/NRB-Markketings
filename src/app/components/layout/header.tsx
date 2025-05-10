@@ -82,7 +82,7 @@ const MainNavigation = () => {
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           scrolled 
             ? "bg-secondary/95 backdrop-blur-sm shadow-md py-3" 
-            : "bg-secondary py-4"
+            : "bg-secondary py-3"
         }`}
         role="navigation"
         aria-label="Main Navigation"
