@@ -1,126 +1,167 @@
 'use client';
 
-// import { Metadata } from 'next';
 import { productCategories } from '@/app/lib/data';
 import ProductCard from '@/app/components/product/product-card';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { staggerContainer, scrollFadeIn } from '@/app/lib/animations';
 import CategoryTab, { CategoryTabsDrawer } from '@/app/components/product/category-tab';
-import { useRef, useState, KeyboardEvent } from 'react';
+import { useRef, useState, KeyboardEvent, useEffect } from 'react';
 import { handleTabKeyDown, getActiveTabFromScroll } from '@/app/lib/tab-utils';
+
+// Custom CSS variables for brand colors
+const brandColors = {
+  primary: 'var(--primary)',
+  secondary: 'var(--secondary)',
+  muted: 'var(--muted)',
+};
 
 export default function ProductsPage() {
   // State for tab navigation
   const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  
-  // Scroll-spy: Update active tab based on scroll position
-  useMotionValueEvent(scrollY, "change", () => {
+
+  // Effect to center active tab on initial load
+  useEffect(() => {
+    if (tabsContainerRef.current && activeTabIndex > 0) {
+      centerActiveTab(activeTabIndex);
+    }
+  }, [activeTabIndex]);
+
+  // Handle scroll events to update UI
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    // Update header sticky state based on scroll position
+    setIsScrolled(latest > 10);
+
     // Only run on client side
     if (typeof window !== 'undefined') {
       const newActiveTab = getActiveTabFromScroll(productCategories);
       if (newActiveTab !== activeTabIndex) {
         setActiveTabIndex(newActiveTab);
-        
-        // Scroll tab into view if necessary
-        if (tabsContainerRef.current) {
-          const tabElement = tabsContainerRef.current.children[newActiveTab] as HTMLElement;
-          if (tabElement) {
-            const container = tabsContainerRef.current;
-            const scrollLeft = container.scrollLeft;
-            const containerWidth = container.clientWidth;
-            
-            const tabLeft = tabElement.offsetLeft;
-            const tabWidth = tabElement.clientWidth;
-            
-            // Check if tab is not fully visible
-            if (tabLeft < scrollLeft || tabLeft + tabWidth > scrollLeft + containerWidth) {
-              // Scroll to make tab visible
-              container.scrollTo({
-                left: tabLeft - containerWidth / 2 + tabWidth / 2,
-                behavior: 'smooth'
-              });
-            }
-          }
-        }
+        centerActiveTab(newActiveTab);
       }
     }
   });
-  
+
+  // Function to center the active tab in the scrollable container
+  const centerActiveTab = (index: number) => {
+    if (tabsContainerRef.current) {
+      const tabElement = tabsContainerRef.current.children[index] as HTMLElement;
+      if (tabElement) {
+        const container = tabsContainerRef.current;
+        const containerWidth = container.clientWidth;
+        const tabLeft = tabElement.offsetLeft;
+        const tabWidth = tabElement.clientWidth;
+
+        // Scroll to center the tab
+        container.scrollTo({
+          left: tabLeft - containerWidth / 2 + tabWidth / 2,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   // Handle keyboard navigation in tab list
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     handleTabKeyDown(e, activeTabIndex, productCategories.length, setActiveTabIndex);
   };
 
-  // Function to scroll to selected category
+  // Function to scroll to selected category with offset for sticky header
   const scrollToSelectedCategory = (index: number) => {
     const section = document.getElementById(`tabpanel-${productCategories[index].slug}`);
-    section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (section) {
+      // Calculate offset to account for BOTH main navbar and product navbar
+      const mainNavbarHeight = 25; // Height of your main site navbar
+      const productTabsHeight = 80; // Height of the product tabs
+
+      // Add extra padding to ensure the heading is clearly visible
+      const extraPadding = 20;
+      const totalOffset = mainNavbarHeight + productTabsHeight + extraPadding;
+      
+      const yOffset = -totalOffset;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
   };
-  
+
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Page Header */}
-      <motion.div 
-        className="mb-12 text-center"
+      <motion.div
+        className="mb-6 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Our Products & Services</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          Our Products & Services
+        </h1>
         <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
           Explore our wide range of high-quality products and services designed for government departments and businesses.
         </p>
       </motion.div>
 
-      {/* Category Tabs - Horizontal scrollable on desktop/tablet */}
+      {/* Enhanced Category Tabs Navigation with centered design */}
       <motion.div 
-        className="sticky top-16 z-20 bg-background/90 backdrop-blur-sm py-3 mb-8 border-b"
+        className={`sticky top-[60px] md:top-[70px] z-20 w-full left-0 right-0 sticky-header ${
+          isScrolled ? 'scrolled' : ''
+        }`}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
       >
-        {/* Tab List for Desktop/Tablet */}
-        <div 
-          className="hidden md:flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
-          ref={tabsContainerRef}
-          role="tablist"
-          aria-label="Product Categories"
-          onKeyDown={handleKeyDown}
-        >
-          {productCategories.map((category, index) => (
-            <div key={category.id} className="snap-start">
-              <CategoryTab
-                category={category}
-                isActive={activeTabIndex === index}
-                index={index}
-                onSelect={(index) => {
-                  setActiveTabIndex(index);
-                  scrollToSelectedCategory(index);
-                }}
-              />
+        <div className="container mx-auto">
+          {/* Tab List for Desktop/Tablet - Modified to fit all options without scrolling */}
+          <div className="flex justify-center">
+            <div 
+              className="hidden md:flex overflow-visible flex-wrap justify-center py-4 max-w-full mx-auto scrollbar-hide"
+              ref={tabsContainerRef}
+              role="tablist"
+              aria-label="Product Categories"
+              onKeyDown={handleKeyDown}
+            >
+              {productCategories.map((category, index) => (
+                <div key={category.id} className="mx-1 mb-2">
+                  <CategoryTab
+                    category={category}
+                    isActive={activeTabIndex === index}
+                    index={index}
+                    onSelect={(index) => {
+                      setActiveTabIndex(index);
+                      scrollToSelectedCategory(index);
+                    }}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
         
         {/* Drawer/Bottom Sheet for Mobile */}
-        <CategoryTabsDrawer 
-          categories={productCategories}
-          activeTabIndex={activeTabIndex}
-          setActiveTabIndex={(index) => {
-            setActiveTabIndex(index);
-            scrollToSelectedCategory(index);
-          }}
-        />
+        <div className="md:hidden py-4 flex justify-center">
+          <CategoryTabsDrawer 
+            categories={productCategories}
+            activeTabIndex={activeTabIndex}
+            setActiveTabIndex={(index) => {
+              setActiveTabIndex(index);
+              scrollToSelectedCategory(index);
+            }}
+          />
+        </div>
       </motion.div>
 
       {/* Product Categories Sections */}
-      <div className="space-y-20">
+      <div className="space-y-20 mt-0">
         {productCategories.map((category) => (
           <section 
             key={category.id} 
-            className="scroll-mt-32"
+            className="scroll-mt-52 pt-10"
             role="tabpanel"
             id={`tabpanel-${category.slug}`}
             aria-labelledby={`tab-${category.slug}`}
@@ -132,12 +173,17 @@ export default function ProductsPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={scrollFadeIn}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 border-b pb-2">{category.name}</h2>
-              <p className="text-base md:text-lg mb-6 text-muted-foreground">{category.description}</p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 pb-2 pt-4" 
+                  style={{ borderBottom: `2px solid ${brandColors.secondary}` }}>
+                {category.name}
+              </h2>
+              <p className="text-base md:text-lg mb-8 text-muted-foreground">
+                {category.description}
+              </p>
             </motion.div>
             
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
               variants={staggerContainer(0.1)}
               initial="offscreen"
               whileInView="onscreen"
@@ -166,21 +212,31 @@ export default function ProductsPage() {
       </div>
 
       {/* CTA Section */}
-      <motion.div 
-        className="mt-20 bg-primary/5 border border-primary/20 rounded-lg p-6 md:p-8 text-center"
+      <motion.div
+        className="mt-28 rounded-lg p-8 md:p-10 text-center shadow-md"
+        style={{ 
+          background: `linear-gradient(135deg, ${brandColors.muted}80, ${brandColors.muted}20)`,
+          border: `1px solid ${brandColors.secondary}40`
+        }}
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true, amount: 0.2 }}
         variants={scrollFadeIn}
       >
-        <h2 className="text-xl md:text-2xl font-bold mb-4">Need Custom Solutions?</h2>
-        <p className="mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          Need Custom Solutions?
+        </h2>
+        <p className="mb-8 max-w-2xl mx-auto text-lg">
           Don&apos;t see what you&apos;re looking for? We offer customized solutions for government departments and businesses.
         </p>
-        <a 
+        <a
           href="/contact" 
-          className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
+          className="inline-block px-8 py-4 rounded-md font-medium btn-hover-effect"
           aria-label="Contact for custom requirements"
+          style={{ 
+            backgroundColor: brandColors.secondary,
+            color: '#000'
+          }}
         >
           Contact for Custom Requirements
         </a>
