@@ -2,14 +2,15 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 
 // Style constants for better readability and DRY principles
 const STYLES = {
   navLink: {
-    base: "relative px-5 py-2 rounded-md text-sm font-medium transition-all duration-300 outline-offset-2 focus-visible:outline-2 focus-visible:outline-primary",
-    inactive: "text-foreground hover:text-primary",
+    base: "relative px-5 py-2 rounded-md text-sm font-medium transition-all duration-300 outline-offset-2 focus-visible:outline-2 focus-visible:outline-primary group",
+    inactive: "text-foreground hover:text-primary hover:bg-primary/5 hover:shadow-sm hover:-translate-y-0.5",
     active: "text-primary",
     underline: {
       base: "absolute bottom-0 left-0 h-0.5 w-full bg-primary transform transition-transform duration-300",
@@ -27,18 +28,7 @@ interface NavItem {
 
 const MainNavigation = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-  
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
   
   // Close mobile menu when route changes
   useEffect(() => {
@@ -76,26 +66,29 @@ const MainNavigation = () => {
   const isActive = (path: string) => pathname === path
 
   return (
-    <header className="w-full">
-      {/* Main Navigation */}
+    <header className="w-full h-20">
+      {/* Sticky Header - Always visible with backdrop blur */}
       <nav 
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled 
-            ? "bg-secondary/95 backdrop-blur-sm shadow-md py-3" 
-            : "bg-secondary py-3"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 w-full bg-white/85 backdrop-blur-md shadow-sm py-4"
         role="navigation"
         aria-label="Main Navigation"
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo with image and text */}
             <Link 
               href="/" 
-              className="text-xl font-bold text-primary transition-transform duration-300 transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex items-center space-x-2 transition-transform duration-300 transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               aria-label="NRB Markketings - Home"
             >
-              NRB Markketings
+              <Image
+                src="/images/logo.png"
+                alt="NRB Logo"
+                width={40}
+                height={40}
+                className="w-20 h-auto"
+              />
+              <span className="text-xl font-bold text-primary">Markketings</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -104,7 +97,7 @@ const MainNavigation = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`group ${STYLES.navLink.base} ${
+                  className={`${STYLES.navLink.base} ${
                     isActive(item.href) 
                       ? STYLES.navLink.active
                       : STYLES.navLink.inactive
@@ -122,7 +115,15 @@ const MainNavigation = () => {
                   />
                 </Link>
               ))}
-
+              
+              {/* CTA Button */}
+              <a 
+                href="tel:+919496899999"
+                className="ml-4 px-5 py-2 bg-primary text-primary-foreground rounded-md transition-all duration-300 transform hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                aria-label="Call us at +91 94968 99999"
+              >
+                Get in Touch
+              </a>
             </div>
 
             {/* Mobile Navigation Toggle */}
@@ -141,7 +142,7 @@ const MainNavigation = () => {
         {/* Mobile Menu - Uses CSS transitions with transform for smooth animation */}
         <div 
           id="mobile-menu"
-          className={`fixed inset-0 z-50 bg-secondary lg:hidden transition-all duration-300 ease-in-out transform ${
+          className={`fixed inset-0 z-50 bg-white/95 backdrop-blur-md lg:hidden transition-all duration-300 ease-in-out transform ${
             isOpen 
               ? "translate-x-0 opacity-100" 
               : "translate-x-full opacity-0 pointer-events-none"
@@ -152,7 +153,21 @@ const MainNavigation = () => {
           aria-label="Mobile Navigation Menu"
         >
           <div className="flex flex-col h-full">
-            <div className="flex justify-end p-4">
+            <div className="flex justify-between items-center p-4 border-b border-border/50">
+              <Link 
+                href="/" 
+                className="flex items-center space-x-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <Image
+                  src="/images/logo.png"
+                  alt="NRB Logo"
+                  width={32}
+                  height={32}
+                  className="w-8 h-auto"
+                />
+                <span className="text-lg font-bold text-primary">Markketings</span>
+              </Link>
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-2 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -161,7 +176,7 @@ const MainNavigation = () => {
                 <X size={24} />
               </button>
             </div>
-            <nav className="flex flex-col space-y-4 p-8">
+            <nav className="flex flex-col space-y-2 p-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -180,7 +195,7 @@ const MainNavigation = () => {
               ))}
               <a 
                 href="tel:+919496899999"
-                className="mt-6 px-4 py-3 bg-primary text-primary-foreground rounded-md text-center font-medium transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="mt-6 px-4 py-3 bg-primary text-primary-foreground rounded-md text-center font-medium transition-all duration-300 hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 aria-label="Call us at +91 94968 99999"
               >
                 Get in Touch

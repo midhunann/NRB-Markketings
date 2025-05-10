@@ -75,6 +75,7 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: #e3e4e5; /* #e3e4e5 (light gray) */
   --muted-foreground: oklch(0.556 0 0);
+  --white: #ffffff; /* #ffffff (white) */
   
   /* Font variables */
   --font-manrope: 'Manrope', system-ui, sans-serif;
