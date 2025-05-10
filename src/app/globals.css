@@ -51,12 +51,15 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  
+  /* Brand Colors */
+  --primary: oklch(0.375 0.157 247.56); /* #405363 (dark blue) */
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.856 0.149 83.87); /* #f7c039 (gold) */
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.899 0.005 255.42); /* #e3e4e5 (light gray) */
   --muted-foreground: oklch(0.556 0 0);
+  
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -85,12 +88,15 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  
+  /* Brand Colors - Dark Mode */
+  --primary: oklch(0.475 0.157 247.56); /* Lighter variant of #405363 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.856 0.149 83.87); /* #f7c039 (gold) - kept same */
+  --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+  
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
