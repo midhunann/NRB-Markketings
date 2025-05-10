@@ -19,22 +19,16 @@ export default function ProductCard({ product, category }: ProductCardProps) {
       className="h-full"
     >
       <Card className="h-full flex flex-col overflow-hidden group border-gray-200 hover:shadow-lg transition-shadow duration-300">
-        <div className="relative w-full aspect-square bg-muted overflow-hidden">
-          <Image 
-            src={product.image || `/api/placeholder/400/400?text=${encodeURIComponent(product.name.substring(0, 1))}`}
-            alt={product.name}
-            width={400}
-            height={400}
-            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
-          
-          {category === 'electronics' && (
-            <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full">
-              Best Seller
-            </div>
-          )}
-        </div>
+      <div className="relative w-full aspect-square bg-muted overflow-hidden">
+        <Image 
+          src={product.image || `/api/placeholder/400/400?text=${encodeURIComponent(product.name.substring(0, 1))}`}
+          alt={product.name}
+          fill={true}
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
         
         <CardHeader className="pb-2 pt-4">
           <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
