@@ -2,61 +2,40 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Phone, Mail, Menu, X } from "lucide-react"
 
-// Style constants for better readability and DRY principles
-const STYLES = {
-  navLink: {
-    base: "relative px-5 py-2 rounded-md text-sm font-medium transition-all duration-300 outline-offset-2 focus-visible:outline-2 focus-visible:outline-primary group",
-    inactive: "text-foreground hover:text-primary hover:bg-primary/5 hover:shadow-sm hover:-translate-y-0.5",
-    active: "text-primary",
-    underline: {
-      base: "absolute bottom-0 left-0 h-0.5 w-full bg-primary transform transition-transform duration-300",
-      inactive: "scale-x-0 group-hover:scale-x-100",
-      active: "scale-x-100"
-    }
-  },
-  ctaButton: "px-5 py-2 bg-primary text-primary-foreground rounded-md transition-all duration-300 transform hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-}
-
-interface NavItem {
-  name: string;
-  href: string;
-}
-
-const MainNavigation = () => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
 
-  // Trap focus in mobile menu when open
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false)
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
     }
     
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden' // Prevent background scrolling
-      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
     
     return () => {
       document.body.style.overflow = ''
-      document.removeEventListener('keydown', handleEscape)
     }
   }, [isOpen])
-  
-  const navItems: NavItem[] = [
+
+  const navItems = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
     { name: "About", href: "/about" },
@@ -66,50 +45,40 @@ const MainNavigation = () => {
   const isActive = (path: string) => pathname === path
 
   return (
-    <header className="w-full h-20">
-      {/* Sticky Header - Always visible with backdrop blur */}
+    <header className="w-full h-16">
       <nav 
-        className="fixed top-0 left-0 right-0 z-50 w-full bg-white/85 backdrop-blur-md shadow-sm py-4"
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
+          isScrolled 
+            ? 'bg-[var(--primary)] shadow-md'
+            : 'bg-[var(--primary)]'
+        }`}
         role="navigation"
         aria-label="Main Navigation"
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            {/* Logo with image and text */}
+          <div className="flex items-center justify-between h-16">
             <Link 
               href="/" 
-              className="flex items-center space-x-2 transition-transform duration-300 transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex items-center text-lg font-bold text-white transition-colors duration-150 ease-in-out hover:text-[var(--secondary)]"
               aria-label="NRB Markketings - Home"
             >
-              <Image
-                src="/images/logo.png"
-                alt="NRB Logo"
-                width={40}
-                height={40}
-                className="w-20 h-auto"
-              />
-              <span className="text-xl font-bold text-primary">Markketings</span>
+                <span className="text-white hover:text-[var(--secondary)] hover:[text-shadow:0_2px_4px_rgba(0,0,0,0.3)] transition-shadow duration-150">NRB Markketings</span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden sm:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 space-x-6">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`${STYLES.navLink.base} ${
-                    isActive(item.href) 
-                      ? STYLES.navLink.active
-                      : STYLES.navLink.inactive
+                  className={`relative py-1 text-white font-medium transition-colors duration-150 ease-in-out hover:text-[var(--secondary)] ${
+                    isActive(item.href) ? "text-[var(--secondary)]" : ""
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {item.name}
                   <span 
-                    className={`${STYLES.navLink.underline.base} ${
-                      isActive(item.href)
-                        ? STYLES.navLink.underline.active
-                        : STYLES.navLink.underline.inactive
+                    className={`absolute bottom-0 left-0 h-0.5 w-full bg-[var(--secondary)] transform transition-transform duration-150 ease-in-out ${
+                      isActive(item.href) ? "scale-x-100" : "scale-x-0 hover:scale-x-100"
                     }`}
                     aria-hidden="true"
                   />
@@ -117,23 +86,38 @@ const MainNavigation = () => {
               ))}
             </div>
 
-            {/* Mobile Navigation Toggle */}
+            <div className="hidden sm:flex items-center space-x-3">
+              <a 
+                href="tel:+919496899999"
+                className="p-1.5 rounded-full text-white transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
+                aria-label="Call us"
+              >
+                <Phone size={18} />
+              </a>
+              <a 
+                href="mailto:info@nrbmarkketings.com"
+                className="p-1.5 rounded-full text-white transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
+                aria-label="Email us"
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+
             <button 
-              className="lg:hidden p-2 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="sm:hidden p-2 rounded-md text-white hover:bg-white/10 transition-colors duration-150"
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-label="Toggle Navigation Menu"
               aria-controls="mobile-menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu - Uses CSS transitions with transform for smooth animation */}
         <div 
           id="mobile-menu"
-          className={`fixed inset-0 z-50 bg-white/95 backdrop-blur-md lg:hidden transition-all duration-300 ease-in-out transform ${
+          className={`fixed inset-0 z-50 bg-gradient-to-b from-[var(--primary)]/90 to-[var(--primary)]/95 backdrop-blur-lg sm:hidden transition-all duration-300 ease-in-out transform ${
             isOpen 
               ? "translate-x-0 opacity-100" 
               : "translate-x-full opacity-0 pointer-events-none"
@@ -144,53 +128,52 @@ const MainNavigation = () => {
           aria-label="Mobile Navigation Menu"
         >
           <div className="flex flex-col h-full">
-            <div className="flex justify-between items-center p-4 border-b border-border/50">
-              <Link 
-                href="/" 
-                className="flex items-center space-x-2"
-                onClick={() => setIsOpen(false)}
-              >
-                <Image
-                  src="/images/logo.png"
-                  alt="NRB Logo"
-                  width={32}
-                  height={32}
-                  className="w-8 h-auto"
-                />
-                <span className="text-lg font-bold text-primary">Markketings</span>
-              </Link>
+            <div className="flex justify-between items-center p-3 border-b border-white/10">
+              <span className="text-lg font-bold text-white">NRB Markketings</span>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="p-2 rounded-md text-white hover:bg-white/10 transition-colors duration-150"
                 aria-label="Close Navigation Menu"
               >
-                <X size={24} />
+                <X size={22} />
               </button>
             </div>
-            <nav className="flex flex-col space-y-2 p-4">
+            <nav className="flex flex-col space-y-2 p-3">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={`
-                    px-4 py-3 text-lg rounded-md transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary
+                    px-3 py-2 text-lg rounded-md transition-all duration-150 ease-in-out
                     ${isActive(item.href) 
-                      ? "bg-primary/10 text-primary font-medium" 
-                      : "text-foreground hover:bg-accent hover:text-accent-foreground"
+                      ? "bg-white/10 text-white font-medium" 
+                      : "text-white/90 hover:bg-white/5 hover:text-white"
                     }
                   `}
                   aria-current={isActive(item.href) ? "page" : undefined}
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <a 
-                href="tel:+919496899999"
-                className="mt-6 px-4 py-3 bg-primary text-primary-foreground rounded-md text-center font-medium transition-all duration-300 hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                aria-label="Call us at +91 94968 99999"
-              >
-                Get in Touch
-              </a>
+              <div className="flex space-x-3 mt-4 px-3 py-2">
+                <a 
+                  href="tel:+919496899999"
+                  className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-150"
+                  aria-label="Call us at +91 94968 99999"
+                >
+                  <Phone size={18} />
+                  <span>Call Us</span>
+                </a>
+                <a 
+                  href="mailto:info@nrbmarkketings.com"
+                  className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-150"
+                  aria-label="Email us at info@nrbmarkketings.com"
+                >
+                  <Mail size={18} />
+                  <span>Email</span>
+                </a>
+              </div>
             </nav>
           </div>
         </div>
@@ -199,4 +182,4 @@ const MainNavigation = () => {
   )
 }
 
-export default MainNavigation
+export default Header
