@@ -378,3 +378,77 @@ html {
   overflow-y: auto;
   padding: 1rem;
 }
+
+/* Add these to your globals.css file */
+
+/* Hide scrollbar for carousel components */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Animation for the service carousel */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Additional styles for header transparency */
+.header-transparent {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.header-solid {
+  background-color: var(--primary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for product category cards */
+.product-card-hover {
+  transition: all 0.3s ease;
+}
+
+.product-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Add these to your globals.css file */
+
+/* Hero section specific styles */
+.hero-gradient-overlay {
+  background: linear-gradient(
+    to bottom,
+    var(--primary) 0%,
+    transparent 10%,
+    rgba(64, 83, 99, 0.7) 50%,
+    rgba(64, 83, 99, 0.4) 100%
+  );
+}
+
+/* For smoother transitions between sections */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 80px;
+  bottom: -40px;
+  background: linear-gradient(to bottom, transparent, var(--background));
+  z-index: 1;
+  pointer-events: none;
+}
