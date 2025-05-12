@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/app/components/ui/button';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface HeroProps {
   headline?: string;
@@ -19,10 +20,23 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <section 
-      className="relative w-full h-screen flex items-center justify-center bg-[var(--primary)]"
+      className="relative w-full h-screen flex items-center justify-center"
       aria-label="Welcome to NRB Marketings"
     >
-      {/* Content Container - Slightly adjusted positioning */}
+      {/* Background Image */}
+      <div className="absolute inset-0 overflow-hidden bg-[var(--primary)]">
+        <Image
+          src="/images/hero-background-2.png"
+          alt="NRB Marketings background"
+          fill
+          priority
+          className="object-cover w-full h-full"
+        />
+        {/* Dark overlay with primary color */}
+        <div className="absolute inset-0 bg-[var(--primary)] opacity-40"></div>
+      </div>
+      
+      {/* Content Container */}
       <div className="container relative z-10 mx-auto px-4">
         <motion.div 
           className="flex flex-col items-center justify-center max-w-4xl mx-auto text-center transform -translate-y-18"
@@ -69,5 +83,3 @@ export const Hero: React.FC<HeroProps> = ({
     </section>
   );
 };
-
-export default Hero;
