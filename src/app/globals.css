@@ -69,13 +69,13 @@
   --popover-foreground: oklch(0.145 0 0);
   
   /* Brand Colors */
-  --primary: #002a45; /* #405363 (dark blue) */
+  --primary: #2c3b4d; /* #405363 (dark blue) */
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: #f7c039; /* #f7c039 (gold) */
+  --secondary: #ffb162; /* #f7c039 (gold) */
   --secondary-foreground: oklch(0.205 0 0);
   --muted: #e3e4e5; /* #e3e4e5 (light gray) */
   --muted-foreground: oklch(0.556 0 0);
-  --white: #ffffff; /* #ffffff (white) */
+  --nude: #eee9df; /* #ffffff (white) */
   
   /* Font variables */
   --font-manrope: 'Manrope', system-ui, sans-serif;

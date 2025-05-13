@@ -57,7 +57,7 @@ export const ServiceCarousel = () => {
   };
 
 return (
-    <section className="py-8 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-8 bg-gradient-to-b from-gray-50 to-[var(--nude)]">
         <div className="container mx-auto px-4">
             <motion.h2 
             className="text-2xl font-bold text-center mb-6 text-[var(--primary)] tracking-wide"
@@ -113,8 +113,8 @@ return (
           </div>
           
           {/* Add left and right gradient indicators */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
+          {/* <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[var(--nude)] to-transparent pointer-events-none z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[var(--nude)] to-transparent pointer-events-none z-10"></div> */}
         </div>
           </div>
     </section>

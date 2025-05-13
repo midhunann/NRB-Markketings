@@ -18,7 +18,7 @@ export default function ProductCard({ product, category }: ProductCardProps) {
       transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 10 }}
       className="h-full"
     >
-      <Card className="h-full flex flex-col overflow-hidden group border-gray-200 hover:shadow-lg transition-shadow duration-300">
+      <Card className="h-full flex flex-col overflow-hidden group border-gray-200 hover:shadow-lg transition-shadow duration-300 ">
       <div className="relative w-full aspect-square bg-muted overflow-hidden">
         <Image 
           src={product.image || `/api/placeholder/400/400?text=${encodeURIComponent(product.name.substring(0, 1))}`}
@@ -31,25 +31,25 @@ export default function ProductCard({ product, category }: ProductCardProps) {
       </div>
         
         <CardHeader className="pb-2 pt-4">
-          <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
+          <CardTitle className="text-[var(--primary)] text-lg leading-tight">{product.name}</CardTitle>
           {product.packSize && (
-            <CardDescription className="text-sm">Pack Size: {product.packSize}</CardDescription>
+            <CardDescription className="text-[var(--primary)] text-sm">Pack Size: {product.packSize}</CardDescription>
           )}
         </CardHeader>
         
         <CardContent className="pb-2">
           {product.description ? (
-            <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
+            <p className="text-sm text-[var(--primary)] line-clamp-2">{product.description}</p>
           ) : (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-[var(--primary)] text-sm">
               High quality {category} product from NRB Markketings
             </p>
           )}
           
           {product.price && (
-            <p className="mt-2 font-medium">
+            <p className="text-[var(--primary)] mt-2 font-medium">
               ₹{product.price}
-              {product.packSize && <span className="text-xs text-muted-foreground ml-1">per unit</span>}
+              {product.packSize && <span className="text-xs text-[var(--primary)] ml-1">per unit</span>}
             </p>
           )}
         </CardContent>

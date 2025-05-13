@@ -46,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({
         >
           {/* Headline */}
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--nude)]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({
           
           {/* Subheadline */}
           <motion.p 
-            className="text-xl md:text-2xl mb-10 text-white/90 max-w-2xl"
+            className="text-xl md:text-2xl mb-10 text-[var(--nude)]/90 max-w-2xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -71,11 +71,11 @@ export const Hero: React.FC<HeroProps> = ({
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Link href={buttonUrl}>
-              <Button 
-                className="bg-[var(--secondary)] text-[var(--secondary-foreground)] rounded-2xl px-8 py-4 hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 font-medium shadow-lg text-lg"
-              >
+                <Button 
+                className="bg-[var(--secondary)] text-[var(--secondary-foreground)] rounded-md px-8 py-4 hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-all duration-300 transform hover:scale-105 font-medium shadow-lg text-lg"
+                >
                 {buttonText}
-              </Button>
+                </Button>
             </Link>
           </motion.div>
         </motion.div>

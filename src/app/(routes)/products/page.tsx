@@ -7,6 +7,8 @@ import { staggerContainer, scrollFadeIn } from '@/app/lib/animations';
 import CategoryTab, { CategoryTabsDrawer } from '@/app/components/product/category-tab';
 import { useRef, useState, KeyboardEvent, useEffect } from 'react';
 import { handleTabKeyDown, getActiveTabFromScroll } from '@/app/lib/tab-utils';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 
 // Custom CSS variables for brand colors
 const brandColors = {
@@ -21,13 +23,31 @@ export default function ProductsPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  // Effect to center active tab on initial load
+  // Effect to center active tab on initial load and handle hash URL
   useEffect(() => {
     if (tabsContainerRef.current && activeTabIndex > 0) {
       centerActiveTab(activeTabIndex);
     }
-  }, [activeTabIndex]);
+
+    // Handle hash URL on page load
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const categoryIndex = productCategories.findIndex(cat => cat.slug === hash);
+        if (categoryIndex !== -1) {
+          // Set the active tab based on the hash
+          setActiveTabIndex(categoryIndex);
+          // Scroll to the section with a slight delay to ensure elements are rendered
+          setTimeout(() => {
+            scrollToSelectedCategory(categoryIndex);
+          }, 100);
+        }
+      }
+    }
+  }, []);
 
   // Handle scroll events to update UI
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -40,6 +60,10 @@ export default function ProductsPage() {
       if (newActiveTab !== activeTabIndex) {
         setActiveTabIndex(newActiveTab);
         centerActiveTab(newActiveTab);
+        
+        // Update URL hash without scrolling (to prevent infinite loop)
+        const newHash = `#${productCategories[newActiveTab].slug}`;
+        window.history.replaceState(null, '', `${pathname}${newHash}`);
       }
     }
   });
@@ -90,7 +114,18 @@ export default function ProductsPage() {
     }
   };
 
+  // Function to handle tab selection
+  const handleTabSelect = (index: number) => {
+    setActiveTabIndex(index);
+    scrollToSelectedCategory(index);
+    
+    // Update URL hash
+    const categorySlug = productCategories[index].slug;
+    router.push(`${pathname}#${categorySlug}`, { scroll: false });
+  };
+
   return (
+  <div className="min-h-screen bg-[var(--nude)]">
     <div className="container mx-auto px-4 py-12">
       {/* Page Header */}
       <motion.div
@@ -99,10 +134,10 @@ export default function ProductsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
+        <h1 className="text-[var(--primary)] text-3xl md:text-4xl font-bold mb-4">
           Our Products & Services
         </h1>
-        <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-[var(--primary)]  text-base md:text-xl max-w-2xl mx-auto">
           Explore our wide range of high-quality products and services designed for government departments and businesses.
         </p>
       </motion.div>
@@ -128,15 +163,22 @@ export default function ProductsPage() {
             >
               {productCategories.map((category, index) => (
                 <div key={category.id} className="mx-1 mb-2">
-                  <CategoryTab
-                    category={category}
-                    isActive={activeTabIndex === index}
-                    index={index}
-                    onSelect={(index) => {
-                      setActiveTabIndex(index);
-                      scrollToSelectedCategory(index);
+                  <Link 
+                    href={`/products#${category.slug}`} 
+                    scroll={false}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleTabSelect(index);
                     }}
-                  />
+                    className="no-underline"
+                  >
+                    <CategoryTab
+                      category={category}
+                      isActive={activeTabIndex === index}
+                      index={index}
+                      onSelect={handleTabSelect}
+                    />
+                  </Link>
                 </div>
               ))}
             </div>
@@ -148,10 +190,7 @@ export default function ProductsPage() {
           <CategoryTabsDrawer 
             categories={productCategories}
             activeTabIndex={activeTabIndex}
-            setActiveTabIndex={(index) => {
-              setActiveTabIndex(index);
-              scrollToSelectedCategory(index);
-            }}
+            setActiveTabIndex={handleTabSelect}
           />
         </div>
       </motion.div>
@@ -242,5 +281,6 @@ export default function ProductsPage() {
         </a>
       </motion.div>
     </div>
+  </div>
   );
 }
