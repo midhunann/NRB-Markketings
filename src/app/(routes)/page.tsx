@@ -83,7 +83,7 @@ export default function Home() {
           >
           <Link 
             href="/about"
-            className="inline-flex items-center text-lg font-medium text-[var(--primary)] hover:text-[var(--secondary)] underline underline-offset-4 transition-colors duration-300 group"
+            className="inline-flex items-center text-lg font-medium text-[var(--primary)] underline underline-offset-4 transition-colors duration-300 group"
           >
             Learn more about our company
             <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -126,9 +126,9 @@ export default function Home() {
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <Link href={`/products#${category.slug}`}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 group overflow-hidden border border-border/50 bg-[var(--primary)] text-[var(--nude)] hover:bg-[var(--primary)]/90 flex flex-col">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 group overflow-hidden border border-border/50 bg-[var(--primary)] text-[var(--secondary)] hover:bg-[var(--primary)]/90 flex flex-col">
                     <CardHeader className="relative py-1">
-                      <div className="absolute top-0 left-0 w-1 h-0 bg-[var(--nude)] group-hover:h-full transition-all duration-500"></div>
+                      <div className="absolute top-0 left-0 w-1 h-0 bg-[var(--secondary)] group-hover:h-full transition-all duration-500"></div>
                       <CardTitle className="text-base group-hover:translate-x-1 transition-transform duration-300 h-6">{category.name}</CardTitle>
                     </CardHeader>
                     <CardContent className="pb-1 flex-grow">
@@ -159,8 +159,8 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold mb-2">Why Choose Us</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
+            <h2 className="text-[var(--primary)] text-3xl font-bold mb-2">Why Choose Us</h2>
+            <p className="text-[var(--primary)] max-w-2xl mx-auto text-sm">
               15+ years of excellence in quality service delivery
             </p>
           </motion.div>
@@ -191,8 +191,8 @@ export default function Home() {
               >
                 <div className="bg-[var(--nude)] p-6 rounded-lg border border-border/50 h-full hover:shadow-md transition-all duration-300">
                   <div className="w-8 h-0.5 bg-[var(--secondary)] mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground text-sm">{feature.description}</p>
+                  <h3 className="text-[var(--primary)] text-lg font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-[var(--primary)] text-sm">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -228,7 +228,7 @@ export default function Home() {
                 className="bg-[var(--primary)] text-[var(--nude)] hover:text-secondary transition-all duration-300 transform hover:shadow-lg px-12 py-6 text-xl rounded-2xl group"
               >
                 <span className="group-hover:hidden">Ready to Partner With Us?</span>
-                <span className="hidden group-hover:inline">Get in Touch Now</span>
+                <span className="hidden group-hover:inline">Get in Touch Now!</span>
               </Button>
             </Link>
           </motion.div>

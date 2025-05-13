@@ -59,10 +59,10 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             <Link 
               href="/" 
-              className="flex items-center text-lg font-bold text-white transition-colors duration-150 ease-in-out hover:text-[var(--secondary)]"
+              className="flex items-center text-lg font-bold text-[var(--nude)] transition-colors duration-150 ease-in-out hover:text-[var(--secondary)]"
               aria-label="NRB Markketings - Home"
             >
-                <span className="text-white hover:text-[var(--secondary)] hover:[text-shadow:0_2px_4px_rgba(0,0,0,0.3)] transition-shadow duration-150">NRB Markketings</span>
+                <span className="text-[var(--nude)] hover:text-[var(--secondary)] hover:[text-shadow:0_2px_4px_rgba(0,0,0,0.3)] transition-shadow duration-150">NRB Markketings</span>
             </Link>
 
             <div className="hidden sm:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 space-x-6">
@@ -70,7 +70,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative py-1 text-white font-medium transition-colors duration-150 ease-in-out hover:text-[var(--secondary)] ${
+                  className={`relative py-1 text-[var(--nude)] font-medium transition-colors duration-150 ease-in-out hover:text-[var(--secondary)] ${
                     isActive(item.href) ? "text-[var(--secondary)]" : ""
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -89,14 +89,14 @@ const Header = () => {
             <div className="hidden sm:flex items-center space-x-3">
               <a 
                 href="tel:+919496899999"
-                className="p-1.5 rounded-full text-white transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
+                className="p-1.5 rounded-full text-[var(--nude)] transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
                 aria-label="Call us"
               >
                 <Phone size={18} />
               </a>
               <a 
                 href="mailto:info@nrbmarkketings.com"
-                className="p-1.5 rounded-full text-white transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
+                className="p-1.5 rounded-full text-[var(--nude)] transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
                 aria-label="Email us"
               >
                 <Mail size={18} />
@@ -104,7 +104,7 @@ const Header = () => {
             </div>
 
             <button 
-              className="sm:hidden p-2 rounded-md text-white hover:bg-white/10 transition-colors duration-150"
+              className="sm:hidden p-2 rounded-md text-[var(--nude)] hover:bg-[var(--nude)]/10 transition-colors duration-150"
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-label="Toggle Navigation Menu"
@@ -128,11 +128,11 @@ const Header = () => {
           aria-label="Mobile Navigation Menu"
         >
           <div className="flex flex-col h-full">
-            <div className="flex justify-between items-center p-3 border-b border-white/10">
-              <span className="text-lg font-bold text-white">NRB Markketings</span>
+            <div className="flex justify-between items-center p-3 border-b border-[var(--nude)]/10">
+              <span className="text-lg font-bold text-[var(--nude)]">NRB Markketings</span>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-md text-white hover:bg-white/10 transition-colors duration-150"
+                className="p-2 rounded-md text-[var(--nude)] hover:bg-whit[var(--nude)]e/10 transition-colors duration-150"
                 aria-label="Close Navigation Menu"
               >
                 <X size={22} />
@@ -146,8 +146,8 @@ const Header = () => {
                   className={`
                     px-3 py-2 text-lg rounded-md transition-all duration-150 ease-in-out
                     ${isActive(item.href) 
-                      ? "bg-white/10 text-white font-medium" 
-                      : "text-white/90 hover:bg-white/5 hover:text-white"
+                      ? "bg-[var(--nude)]/10 text-[var(--nude)] font-medium" 
+                      : "text-[var(--nude)]/90 hover:bg-[var(--nude)]/5 hover:text-[var(--nude)]"
                     }
                   `}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -159,7 +159,7 @@ const Header = () => {
               <div className="flex space-x-3 mt-4 px-3 py-2">
                 <a 
                   href="tel:+919496899999"
-                  className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-150"
+                  className="flex items-center space-x-2 text-[var(--nude)]/90 hover:text-[var(--nude)] transition-colors duration-150"
                   aria-label="Call us at +91 94968 99999"
                 >
                   <Phone size={18} />
@@ -167,7 +167,7 @@ const Header = () => {
                 </a>
                 <a 
                   href="mailto:info@nrbmarkketings.com"
-                  className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-150"
+                  className="flex items-center space-x-2 text-[var(--nude)]/90 hover:text-[var(--nude)] transition-colors duration-150"
                   aria-label="Email us at info@nrbmarkketings.com"
                 >
                   <Mail size={18} />
