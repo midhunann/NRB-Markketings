@@ -44,7 +44,7 @@ export default function Home() {
       <ServiceCarousel />
       
       {/* Company Introduction */}
-      <section className="py-20 bg-[var(--primary)]/10">
+      <section className="py-20 bg-[#c9c1b1]">
       <div className="container mx-auto px-4">
         <motion.div 
         className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center text-center md:text-left"
@@ -96,15 +96,15 @@ export default function Home() {
       </div>
       </section>
       
-            {/* Categories Section */}
-      <section className="py-20 bg-background">
+      {/* Categories Section */}
+      <section className="py-12 bg-[var(--nude)]">
         <div className="container mx-auto px-4">
           <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
-            className="mb-12 text-center"
+            className="mb-8 text-center"
           >
             <h2 className="text-[var(--primary)] text-3xl md:text-4xl font-bold mb-4">Our Product Categories</h2>
             <p className="text-center text-[var(--primary)]/80 max-w-2xl mx-auto">
@@ -126,17 +126,17 @@ export default function Home() {
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <Link href={`/products#${category.slug}`}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 group overflow-hidden border border-border/50 bg-[var(--primary)] text-white hover:bg-[var(--primary)]/90">
-                    <CardHeader className="relative">
-                      <div className="absolute top-0 left-0 w-1 h-0 bg-white group-hover:h-full transition-all duration-500"></div>
-                      <CardTitle className="group-hover:translate-x-1 transition-transform duration-300">{category.name}</CardTitle>
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 group overflow-hidden border border-border/50 bg-[var(--primary)] text-[var(--nude)] hover:bg-[var(--primary)]/90 flex flex-col">
+                    <CardHeader className="relative py-1">
+                      <div className="absolute top-0 left-0 w-1 h-0 bg-[var(--nude)] group-hover:h-full transition-all duration-500"></div>
+                      <CardTitle className="text-base group-hover:translate-x-1 transition-transform duration-300 h-6">{category.name}</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-white/90">{category.description}</CardDescription>
+                    <CardContent className="pb-1 flex-grow">
+                      <CardDescription className="text-[var(--nude)]/90 text-sm line-clamp-2 min-h-[40px]">{category.description}</CardDescription>
                     </CardContent>
-                    <CardFooter className="text-sm text-white/80 flex justify-between items-center">
+                    <CardFooter className="text-xs text-[var(--nude)]/80 py-2 flex justify-between items-center h-8">
                       <span>{category.items.length} products</span>
-                      <span className="hover:text-white opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <span className="opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                         View →
                       </span>
                     </CardFooter>
@@ -150,83 +150,89 @@ export default function Home() {
 
 
       {/* Features Section */}
-      <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <motion.div
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="mb-12 text-center"
-        >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-          With over 15 years of excellence, we deliver unparalleled service and quality
-        </p>
-        </motion.div>
-        
-        <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={staggerContainer}
-        >
-        {features.map((feature, index) => (
-          <motion.div 
-          key={index}
-          variants={fadeInUp}
-          whileHover={{ y: -8, transition: { duration: 0.2 } }}
+      <section className="py-8 bg-[#c9c1b1]">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-8 text-center"
           >
-          <div className="bg-background p-8 rounded-lg shadow-sm flex flex-col h-full border border-border/50 hover:shadow-md transition-all duration-300">
-            <div className="mb-4 text-[var(--primary)]">
-            <div className="w-12 h-1 bg-[var(--secondary)] mb-4"></div>
-            </div>
-            <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-            <p className="text-muted-foreground">{feature.description}</p>
-          </div>
+            <h2 className="text-3xl font-bold mb-2">Why Choose Us</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
+              15+ years of excellence in quality service delivery
+            </p>
           </motion.div>
-        ))}
-        </motion.div>
-      </div>
+          
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {features.map((feature) => (
+              <motion.div 
+                key={feature.title}
+                variants={{
+                  hidden: { y: 20, opacity: 0 },
+                  visible: { y: 0, opacity: 1 }
+                }}
+                transition={{ duration: 0.4 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="h-full"
+              >
+                <div className="bg-[var(--nude)] p-6 rounded-lg border border-border/50 h-full hover:shadow-md transition-all duration-300">
+                  <div className="w-8 h-0.5 bg-[var(--secondary)] mb-3" />
+                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[var(--secondary)] relative overflow-hidden">
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-        backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.12'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-        }}
-        aria-hidden="true"
-      ></div>
+      <section className="py-16 bg-[var(--secondary)] relative overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.30'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          }}
+          aria-hidden="true"
+        ></div>
       
-      <motion.div 
-        className="container relative z-10 mx-auto px-4 text-center"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--secondary-foreground)]">Ready to Partner With Us?</h2>
-        <p className="max-w-2xl mx-auto mb-8 text-[var(--secondary-foreground)]/90">
-        With over 15 years of experience serving government departments, we are committed to delivering excellence in every product.
-        </p>
-        <motion.div
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        <motion.div 
+          className="container relative z-10 mx-auto px-4 text-center"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
         >
-        <Link href="/contact">
-          <Button 
-          size="lg" 
-          variant="default" 
-          className="bg-[var(--primary)] text-white transition-all duration-300 transform hover:shadow-lg px-8 py-6 text-lg rounded-2xl"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
-          Get in Touch
-          </Button>
-        </Link>
+            <Link href="/contact">
+              <Button 
+                size="lg" 
+                variant="default" 
+                className="bg-[var(--primary)] text-[var(--nude)] hover:text-secondary transition-all duration-300 transform hover:shadow-lg px-12 py-6 text-xl rounded-2xl group"
+              >
+                <span className="group-hover:hidden">Ready to Partner With Us?</span>
+                <span className="hidden group-hover:inline">Get in Touch Now</span>
+              </Button>
+            </Link>
+          </motion.div>
         </motion.div>
-      </motion.div>
       </section>
     </main>
   );
