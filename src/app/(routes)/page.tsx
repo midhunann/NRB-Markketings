@@ -96,57 +96,58 @@ export default function Home() {
       </div>
       </section>
       
-      {/* Categories Section */}
+            {/* Categories Section */}
       <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <motion.div
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-        className="mb-12 text-center"
-        >
-        <h2 className="text-[var(--primary)] text-3xl md:text-4xl font-bold mb-4">Our Product Categories</h2>
-        <p className="text-center text-[var(--primary)]/80 max-w-2xl mx-auto">
-          Explore our extensive range of high-quality products designed for government and institutional needs
-        </p>
-        </motion.div>
-        
-        <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={staggerContainer}
-        >
-        {productCategories.map((category) => (
-          <motion.div 
-          key={category.id} 
-          variants={fadeInUp}
-          whileHover={{ y: -5, transition: { duration: 0.2 } }}
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="mb-12 text-center"
           >
-          <Link href={`/products#${category.slug}`}>
-            <Card className="h-full hover:shadow-lg transition-all duration-300 group overflow-hidden border border-border/50 hover:bg-muted">
-            <CardHeader className="relative">
-              <div className="absolute top-0 left-0 w-1 h-0 bg-[var(--primary)] group-hover:h-full transition-all duration-500"></div>
-              <CardTitle className="group-hover:translate-x-1 transition-transform duration-300">{category.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{category.description}</CardDescription>
-            </CardContent>
-            <CardFooter className="text-sm text-muted-foreground flex justify-between items-center">
-              <span>{category.items.length} products</span>
-              <span className="text-[var(--primary)] hover:text-black opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              View →
-              </span>
-            </CardFooter>
-            </Card>
-          </Link>
+            <h2 className="text-[var(--primary)] text-3xl md:text-4xl font-bold mb-4">Our Product Categories</h2>
+            <p className="text-center text-[var(--primary)]/80 max-w-2xl mx-auto">
+              Explore our extensive range of high-quality products designed for government and institutional needs
+            </p>
           </motion.div>
-        ))}
-        </motion.div>
-      </div>
+
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+          >
+            {productCategories.map((category) => (
+              <motion.div 
+                key={category.id} 
+                variants={fadeInUp}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <Link href={`/products#${category.slug}`}>
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 group overflow-hidden border border-border/50 bg-[var(--primary)] text-white hover:bg-[var(--primary)]/90">
+                    <CardHeader className="relative">
+                      <div className="absolute top-0 left-0 w-1 h-0 bg-white group-hover:h-full transition-all duration-500"></div>
+                      <CardTitle className="group-hover:translate-x-1 transition-transform duration-300">{category.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-white/90">{category.description}</CardDescription>
+                    </CardContent>
+                    <CardFooter className="text-sm text-white/80 flex justify-between items-center">
+                      <span>{category.items.length} products</span>
+                      <span className="hover:text-white opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                        View →
+                      </span>
+                    </CardFooter>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
+
 
       {/* Features Section */}
       <section className="py-20 bg-muted">
