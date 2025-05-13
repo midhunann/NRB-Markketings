@@ -98,10 +98,10 @@ export default function ProductsPage() {
     if (section) {
       // Calculate offset to account for BOTH main navbar and product navbar
       const mainNavbarHeight = 25; // Height of your main site navbar
-      const productTabsHeight = 80; // Height of the product tabs
+      const productTabsHeight = 60; // Height of the product tabs
 
       // Add extra padding to ensure the heading is clearly visible
-      const extraPadding = 20;
+      const extraPadding = 10;
       const totalOffset = mainNavbarHeight + productTabsHeight + extraPadding;
       
       const yOffset = -totalOffset;
@@ -142,27 +142,27 @@ export default function ProductsPage() {
         </p>
       </motion.div>
 
-      {/* Enhanced Category Tabs Navigation with centered design */}
+      {/* Enhanced Category Tabs Navigation - no gap with navbar */}
       <motion.div 
-        className={`sticky top-[60px] md:top-[70px] z-20 w-full left-0 right-0 sticky-header ${
-          isScrolled ? 'scrolled' : ''
+        className={`sticky top-0 md:top-[60px] z-20 w-full left-0 right-0 bg-[var(--primary)] shadow-md ${
+          isScrolled ? 'border-t border-[var(--primary)]' : ''
         }`}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
       >
         <div className="container mx-auto">
-          {/* Tab List for Desktop/Tablet - Modified to fit all options without scrolling */}
+          {/* Tab List for Desktop/Tablet - Modified to center all tabs */}
           <div className="flex justify-center">
             <div 
-              className="hidden md:flex overflow-visible flex-wrap justify-center py-4 max-w-full mx-auto scrollbar-hide"
+              className="hidden md:flex overflow-x-auto flex-nowrap justify-center py-3 max-w-full mx-auto scrollbar-hide"
               ref={tabsContainerRef}
               role="tablist"
               aria-label="Product Categories"
               onKeyDown={handleKeyDown}
             >
               {productCategories.map((category, index) => (
-                <div key={category.id} className="mx-1 mb-2">
+                <div key={category.id} className="mx-1">
                   <Link 
                     href={`/products#${category.slug}`} 
                     scroll={false}
@@ -186,7 +186,7 @@ export default function ProductsPage() {
         </div>
         
         {/* Drawer/Bottom Sheet for Mobile */}
-        <div className="md:hidden py-4 flex justify-center">
+        <div className="md:hidden py-2 flex justify-center">
           <CategoryTabsDrawer 
             categories={productCategories}
             activeTabIndex={activeTabIndex}
@@ -196,11 +196,11 @@ export default function ProductsPage() {
       </motion.div>
 
       {/* Product Categories Sections */}
-      <div className="space-y-20 mt-0">
+      <div className="space-y-20 mt-10">
         {productCategories.map((category) => (
           <section 
             key={category.id} 
-            className="scroll-mt-52 pt-10"
+            className="scroll-mt-32 pt-10"
             role="tabpanel"
             id={`tabpanel-${category.slug}`}
             aria-labelledby={`tab-${category.slug}`}
@@ -212,11 +212,11 @@ export default function ProductsPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={scrollFadeIn}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 pb-2 pt-4" 
+              <h2 className="text-primary text-2xl md:text-3xl font-bold mb-3 pb-2 pt-4" 
                   style={{ borderBottom: `2px solid ${brandColors.secondary}` }}>
                 {category.name}
               </h2>
-              <p className="text-base md:text-lg mb-8 text-muted-foreground">
+              <p className="text-base md:text-lg mb-8 text-primary">
                 {category.description}
               </p>
             </motion.div>
@@ -254,18 +254,18 @@ export default function ProductsPage() {
       <motion.div
         className="mt-28 rounded-lg p-8 md:p-10 text-center shadow-md"
         style={{ 
-          background: `linear-gradient(135deg, ${brandColors.muted}80, ${brandColors.muted}20)`,
-          border: `1px solid ${brandColors.secondary}40`
+          backgroundColor: `var(--primary)`,
+          border: `1px solid ${brandColors.secondary}`
         }}
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true, amount: 0.2 }}
         variants={scrollFadeIn}
       >
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[var(--nude)]">
           Need Custom Solutions?
         </h2>
-        <p className="mb-8 max-w-2xl mx-auto text-lg">
+        <p className="mb-8 max-w-2xl mx-auto text-lg text-[var(--nude)]">
           Don&apos;t see what you&apos;re looking for? We offer customized solutions for government departments and businesses.
         </p>
         <a
