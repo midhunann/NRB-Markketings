@@ -42,12 +42,13 @@ export default function CategoryTab({
       tabIndex={isActive ? 0 : -1}
       className={`
         relative flex items-center gap-2 whitespace-nowrap px-4 py-3 
-        rounded-md transition-all outline-none
+        transition-all outline-none
+        bg-[var(--primary)] rounded-t-md
         ${isActive 
-          ? "bg-primary/10 text-primary font-medium" 
-          : "hover:bg-muted"
+          ? "text-[var(--secondary)] font-medium" 
+          : "text-[var(--nude)] hover:text-[var(--secondary)]"
         }
-        focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+        focus-visible:ring-2 focus-visible:ring-[var(--nude)] focus-visible:ring-offset-2
       `}
       onClick={() => {
         onSelect(index);
@@ -72,7 +73,7 @@ export default function CategoryTab({
           scale: isHovered || isActive ? 1.1 : 1,
           rotate: isHovered ? 5 : 0
         }}
-        className="text-primary"
+        className="text-[var(--secondary)]"
       >
         <IconComponent size={18} />
       </motion.span>
@@ -81,7 +82,7 @@ export default function CategoryTab({
       
       {isActive && (
         <motion.div
-          className="absolute inset-0 bg-primary/10 rounded-md"
+          className="absolute inset-0 border-b-2 border-[var(--secondary)]"
           layoutId="activeTabBackground"
           initial={false}
           transition={{
@@ -107,9 +108,9 @@ export function CategoryTabsDrawer({
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <div className="md:hidden">
+    <div className="md:hidden w-full bg-[var(--primary)]">
       <motion.button
-        className="flex items-center justify-between w-full px-4 py-3 bg-muted rounded-lg border border-muted-foreground/20"
+        className="flex items-center justify-between w-full px-4 py-3 bg-[var(--primary)] text-[var(--secondary)] rounded-none border-none"
         onClick={() => setIsOpen(!isOpen)}
         whileTap={{ scale: 0.98 }}
       >
@@ -119,7 +120,7 @@ export function CategoryTabsDrawer({
             const IconComponent = ICON_MAP[category.icon] || Monitor;
             return (
               <>
-                <IconComponent size={18} className="text-primary" />
+                <IconComponent size={18} className="text-[var(--secondary)]" />
                 <span>{category.name}</span>
               </>
             );
@@ -135,7 +136,7 @@ export function CategoryTabsDrawer({
       
       {isOpen && (
         <motion.div
-          className="absolute mt-2 bg-background border border-muted-foreground/10 rounded-lg shadow-lg overflow-hidden z-50 w-full left-0 right-0 mx-4"
+          className="absolute mt-0 bg-[var(--primary)] border-none rounded-none shadow-lg overflow-hidden z-50 w-full left-0 right-0"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
@@ -147,15 +148,17 @@ export function CategoryTabsDrawer({
               return (
                 <motion.button
                   key={category.id}
-                  className={`flex items-center gap-2 w-full text-left px-4 py-3 rounded-md ${
-                    activeTabIndex === idx ? "bg-primary/10 text-primary" : ""
-                  }`}
+                  className={`flex items-center gap-2 w-full text-left px-4 py-3 
+                    ${activeTabIndex === idx 
+                      ? "text-[var(--secondary)] border-l-4 border-[var(--secondary)]" 
+                      : "text-[var(--nude)] hover:text-[var(--secondary)]"
+                    }`}
                   onClick={() => {
                     setActiveTabIndex(idx);
                     scrollToCategory(category.slug);
                     setIsOpen(false);
                   }}
-                  whileHover={{ backgroundColor: "rgba(0,0,0,0.05)" }}
+                  whileHover={{ backgroundColor: "var(--primary)" }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <IconComponent size={18} />
