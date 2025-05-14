@@ -36,17 +36,17 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="absolute inset-0 bg-[var(--primary)] opacity-40"></div>
       </div>
       
-      {/* Content Container */}
-      <div className="container relative z-10 mx-auto px-4">
+      {/* Content Container - Centered with proper vertical alignment */}
+      <div className="container relative z-10 mx-auto px-4 w-full max-w-6xl flex items-center justify-center h-full">
         <motion.div 
-          className="flex flex-col items-center justify-center max-w-4xl mx-auto text-center transform -translate-y-18"
+          className="flex flex-col items-center justify-center mx-auto text-center transform -translate-y-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Headline */}
+          {/* Headline - Added whitespace-nowrap and overflow handling */}
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--nude)]"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--nude)] whitespace-nowrap overflow-visible w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,9 +54,9 @@ export const Hero: React.FC<HeroProps> = ({
             {headline}
           </motion.h1>
           
-          {/* Subheadline */}
+          {/* Subheadline - Added whitespace-nowrap and overflow handling */}
           <motion.p 
-            className="text-xl md:text-2xl mb-10 text-[var(--nude)]/90 max-w-2xl"
+            className="text-xl md:text-2xl mb-10 text-[var(--nude)]/90 whitespace-nowrap overflow-visible w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
