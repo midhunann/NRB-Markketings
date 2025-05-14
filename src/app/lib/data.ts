@@ -130,10 +130,28 @@ export const navLinks = [
 
 // Features (Why Choose Us)
 export const features = [
-  { title: 'Assured Warranty', description: 'All our products come with guaranteed warranty' },
-  { title: 'Quality Assurance', description: 'Strict quality-assurance policy for all products' },
-  { title: 'All-India Network', description: 'Distribution network covering the entire country' },
-  { title: 'Premium Materials', description: 'Quality raw materials used in all our products' },
-  { title: 'Cost-Effective', description: 'Competitive pricing due to high volumes' },
-  { title: 'Quick Service', description: 'Responsive after-sales service' },
+  {
+    title: "Guaranteed Warranty",
+    description: "Comprehensive coverage on every purchase to keep operations running smoothly."
+  },
+  {
+    title: "Rigorous QA",
+    description: "Multi‑point inspections ensure every item meets or exceeds industry specs."
+  },
+  {
+    title: "Nationwide Reach",
+    description: "Our logistics network delivers anywhere in India—on time, every time."
+  },
+  {
+    title: "Volume Pricing",
+    description: "Bulk auction sourcing means you pay less per unit without compromising quality."
+  },
+  {
+    title: "Rapid Support",
+    description: "Dedicated after‑sales team ready to resolve issues within 24 hours."
+  },
+  {
+    title: "Eco-Conscious Operations",
+    description: "We prioritize sustainable practices, ensuring our products and processes are environmentally friendly."
+  }
 ];
