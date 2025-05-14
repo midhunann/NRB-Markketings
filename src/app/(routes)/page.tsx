@@ -34,9 +34,9 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       {/* Hero Section with full-viewport height */}
       <Hero 
-      headline="Welcome to NRB Marketings"
-      subheadline="Your one-stop for Government & Industrial Supplies."
-      buttonText="Get Started"
+      headline="Empowering Tomorrow’s Infrastructure Today"
+      subheadline="Premium government‑surplus assets & industrial essentials—reliably sourced, expertly delivered."
+      buttonText="Browse Catalog"
       buttonUrl="/products"
       />
       
@@ -55,16 +55,13 @@ export default function Home() {
         >
         {/* Left column: Company info */}
         <motion.div className="space-y-5" variants={fadeInUp}>
-          <h2 className="text-3xl font-bold text-[var(--primary)]">About NRB Marketings</h2>
+          <h2 className="text-3xl font-bold text-[var(--primary)]">Who We Are</h2>
           <div className="w-16 h-1 bg-[var(--secondary)] mx-auto md:mx-0"></div>
           <p className="text-lg text-gray-700">
-          NRB Marketings is a leading supplier for government departments and industrial clients across Tamil Nadu. 
-          With over 15 years of experience in the industry, we have established ourselves as a trusted partner 
-          for quality products and reliable services.
+          For 15+ years, NRB Markketings has bridged government auctions and industry needs—transforming surplus assets into cost‑smart solutions for public departments.
           </p>
           <p className="text-lg text-gray-700">
-          We specialize in providing chemicals, electronics, plumbing supplies, PSDAS (Portable Smart Data Acquisition Systems), 
-          and even quality seafood to various government departments and organizations.
+          From state‑of‑the‑art electronics and durable plumbing supplies to eco‑friendly PSDAS controls and premium seafood, we deliver unmatched quality and service.
           </p>
         </motion.div>
         
@@ -106,9 +103,9 @@ export default function Home() {
             variants={fadeInUp}
             className="mb-8 text-center"
           >
-            <h2 className="text-[var(--primary)] text-3xl md:text-4xl font-bold mb-4">Our Product Categories</h2>
+            <h2 className="text-[var(--primary)] text-3xl md:text-4xl font-bold mb-4">Explore Our Solutions</h2>
             <p className="text-center text-[var(--primary)]/80 max-w-2xl mx-auto">
-              Explore our extensive range of high-quality products designed for government and institutional needs
+              Dive into our diverse range—from precision electronics to large‑scale water‑management systems—crafted for institutional performance.
             </p>
           </motion.div>
 
@@ -159,9 +156,9 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="mb-8 text-center"
           >
-            <h2 className="text-[var(--primary)] text-3xl font-bold mb-2">Why Choose Us</h2>
+            <h2 className="text-[var(--primary)] text-3xl font-bold mb-2">Your Trusted Partner</h2>
             <p className="text-[var(--primary)] max-w-2xl mx-auto text-sm">
-              15+ years of excellence in quality service delivery
+              Proven excellence in procurement, quality control, and pan‑India delivery—backed by a 100% satisfaction guarantee.
             </p>
           </motion.div>
           
@@ -201,38 +198,66 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-[var(--secondary)] relative overflow-hidden">
+      <section 
+        className="py-16 bg-[var(--secondary)] relative overflow-hidden"
+        aria-labelledby="cta-heading"
+      >
+        {/* Pattern Background - Preloaded SVG for better performance */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 bg-repeat"
           style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.30'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.30'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
           }}
           aria-hidden="true"
-        ></div>
-      
-        <motion.div 
-          className="container relative z-10 mx-auto px-4 text-center"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
+        />
+        
+        <div 
+          className="container relative z-10 mx-auto px-4 md:px-8 max-w-4xl text-center"
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 10 }}
+          <motion.div 
+            className="rounded-3xl bg-[var(--secondary)]/90 backdrop-blur-sm p-8 shadow-lg"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <Link href="/contact">
-              <Button 
-                size="lg" 
-                variant="default" 
-                className="bg-[var(--primary)] text-[var(--nude)] hover:text-secondary transition-all duration-300 transform hover:shadow-lg px-12 py-6 text-xl rounded-2xl group"
+            <h2 id="cta-heading" className="sr-only">Get a Quote</h2>
+            <p className="mb-6 text-lg md:text-xl text-[var(--primary)]/90 font-medium">
+              Start your next project with confidence—partner with India&apos;s leading government‑surplus dealer.
+            </p>
+
+            <Link 
+              href="/contact"
+              className="inline-block"
+            >
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <span className="group-hover:hidden">Ready to Partner With Us?</span>
-                <span className="hidden group-hover:inline">Get in Touch Now!</span>
-              </Button>
+                <Button 
+                  size="lg" 
+                  variant="default" 
+                  className="bg-[var(--primary)] text-[var(--nude)] hover:bg-[var(--primary)]/90 transition-all duration-300 px-8 py-4 text-lg md:text-xl rounded-xl shadow-md hover:shadow-xl relative overflow-hidden group"
+                >
+                  <span className="relative z-10">
+                    <span className="group-hover:hidden">Get Your Free Quote Today</span>
+                    <span className="hidden group-hover:inline">Request a Quote →</span>
+                  </span>
+                  <span 
+                    className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/80 to-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    aria-hidden="true"
+                  ></span>
+                </Button>
+              </motion.div>
             </Link>
+            
+            <p className="mt-4 text-sm text-[var(--primary)]/70">
+              No obligations. Typically respond within 24 hours.
+            </p>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
     </main>
   );
