@@ -117,7 +117,7 @@ export const companyInfo = {
   mobile: "+91 94968 99999",
   gst: "33ANLPB9283E1Z0",
   msme: "TN-27-0021489",
-  aboutShort: "Leading supplier of a wide variety of products and services to Central and State Government departments across India, with over 15 years of experience, strict delivery commitments, and 100% client satisfaction.",
+  aboutShort: "Leading supplier of a wide variety of products and services to Central and State Government departments across India, with over years of experience, strict delivery commitments, and 100% client satisfaction.",
 };
 
 // Navigation Links
