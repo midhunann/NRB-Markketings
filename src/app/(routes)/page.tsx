@@ -58,7 +58,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-[var(--primary)]">Who We Are</h2>
           <div className="w-16 h-1 bg-[var(--secondary)] mx-auto md:mx-0"></div>
           <p className="text-lg text-gray-700">
-          For 15+ years, NRB Markketings has bridged government auctions and industry needs—transforming surplus assets into cost‑smart solutions for public departments.
+          For years, NRB Markketings has bridged government auctions and industry needs—transforming surplus assets into cost‑smart solutions for public departments.
           </p>
           <p className="text-lg text-gray-700">
           From state‑of‑the‑art electronics and durable plumbing supplies to eco‑friendly PSDAS controls and premium seafood, we deliver unmatched quality and service.
