@@ -77,21 +77,21 @@ export const productCategories: ProductCategory[] = [
       { id: 'p11', name: '3" End Cap', image: '/images/products/plumbing/three-inch-end-cap.png' },
     ]
   },
-  {
-    id: 'seafood',
-    name: 'Seafood Products',
-    slug: 'seafood',
-    description: 'Fresh seafood products sourced from quality suppliers',
-    icon: 'Fish', // Lucide icon name
-    items: [
-      { id: 's1', name: 'Parla Fish', image: '/images/products/seafood/parla-fish.png' },
-      { id: 's2', name: 'SF (Vanjaram)', image: '/images/products/seafood/sf-vanjaram.png' },
-      { id: 's3', name: 'Sea White Prawn', image: '/images/products/seafood/sea-white-prawn.png' },
-      { id: 's4', name: 'Squid', image: '/images/products/seafood/squid.png' },
-      { id: 's5', name: 'Blue Sea Crab', image: '/images/products/seafood/blue-sea-crab.png' },
-      { id: 's6', name: 'Three Spot Crab', image: '/images/products/seafood/three-spot-crab.png' },
-    ]
-  },
+  // {
+  //   id: 'seafood',
+  //   name: 'Seafood Products',
+  //   slug: 'seafood',
+  //   description: 'Fresh seafood products sourced from quality suppliers',
+  //   icon: 'Fish', // Lucide icon name
+  //   items: [
+  //     { id: 's1', name: 'Parla Fish', image: '/images/products/seafood/parla-fish.png' },
+  //     { id: 's2', name: 'SF (Vanjaram)', image: '/images/products/seafood/sf-vanjaram.png' },
+  //     { id: 's3', name: 'Sea White Prawn', image: '/images/products/seafood/sea-white-prawn.png' },
+  //     { id: 's4', name: 'Squid', image: '/images/products/seafood/squid.png' },
+  //     { id: 's5', name: 'Blue Sea Crab', image: '/images/products/seafood/blue-sea-crab.png' },
+  //     { id: 's6', name: 'Three Spot Crab', image: '/images/products/seafood/three-spot-crab.png' },
+  //   ]
+  // },
   {
     id: 'psdas',
     name: 'PSDAS',
