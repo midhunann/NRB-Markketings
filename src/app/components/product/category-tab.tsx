@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Monitor, Beaker, Wrench, Fish, Droplets, ChevronDown } from "lucide-react";
+import { Monitor, Beaker, Wrench, Droplets, ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import { ProductCategory } from "@/app/lib/data";
 import { scrollToCategory } from "@/app/lib/tab-utils";
@@ -18,7 +18,6 @@ const ICON_MAP: Record<string, React.ElementType> = {
   "Monitor": Monitor,
   "Flask": Beaker,
   "PipelineIcon": Wrench,
-  "Fish": Fish,
   "Droplets": Droplets,
 };
 
