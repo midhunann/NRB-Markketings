@@ -59,10 +59,27 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             <Link 
               href="/" 
-              className="flex items-center text-lg font-bold text-[var(--nude)] transition-colors duration-150 ease-in-out hover:text-[var(--secondary)]"
+              className="flex items-center transition-colors duration-150 ease-in-out"
               aria-label="NRB Markketings - Home"
             >
-                <span className="text-[var(--nude)] hover:text-[var(--secondary)] hover:[text-shadow:0_2px_4px_rgba(0,0,0,0.3)] transition-shadow duration-150">NRB Markketings</span>
+              {/* FONT OPTION 1: Enhanced Bold with Logo Styling - CURRENTLY ACTIVE */}
+              <span className="text-[var(--nude)] hover:text-[var(--secondary)] font-extrabold text-xl tracking-wide hover:[text-shadow:0_2px_8px_rgba(0,0,0,0.3)] transition-all duration-200 transform hover:scale-101 select-none">
+                NRB Markketings
+              </span>
+
+              {/* FONT OPTION 2: Gotham Bold/Ultra - UNCOMMENT TO USE (and comment out option 1 above) */}
+              {/* 
+              <span 
+                className="text-[var(--nude)] hover:text-[var(--secondary)] text-2xl hover:[text-shadow:0_2px_8px_rgba(0,0,0,0.4)] transition-all duration-200 transform hover:scale-105 select-none"
+                style={{ 
+                  fontFamily: '"Gotham Ultra", "Gotham Bold", "Gotham", "Helvetica Neue", "Arial Black", sans-serif',
+                  fontWeight: 900,
+                  letterSpacing: '0.05em'
+                }}
+              >
+                NRB Markketings
+              </span>
+              */}
             </Link>
 
             <div className="hidden sm:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 space-x-6">
@@ -129,7 +146,23 @@ const Header = () => {
         >
           <div className="flex flex-col h-full">
             <div className="flex justify-between items-center p-3 border-b border-[var(--nude)]/10">
-              <span className="text-lg font-bold text-[var(--nude)]">NRB Markketings</span>
+              {/* MOBILE LOGO - OPTION 1: Enhanced Bold - CURRENTLY ACTIVE */}
+              <span className="text-xl font-black tracking-wide text-[var(--nude)]">NRB Markketings</span>
+              
+              {/* MOBILE LOGO - OPTION 2: Gotham Bold/Ultra - UNCOMMENT TO USE (and comment out option 1 above) */}
+              {/* 
+              <span 
+                className="text-xl text-[var(--nude)]"
+                style={{ 
+                  fontFamily: '"Gotham Ultra", "Gotham Bold", "Gotham", "Helvetica Neue", "Arial Black", sans-serif',
+                  fontWeight: 900,
+                  letterSpacing: '0.05em'
+                }}
+              >
+                NRB Markketings
+              </span>
+              */}
+              
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-2 rounded-md text-[var(--nude)] hover:bg-whit[var(--nude)]e/10 transition-colors duration-150"
