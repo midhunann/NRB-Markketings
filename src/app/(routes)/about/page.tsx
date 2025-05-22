@@ -87,20 +87,20 @@ export default function AboutPage() {
 
   const stats = [
     {
-      value: 2,
+      value: 6,
       label: "Years in Business",
       suffix: "+",
       icon: <Calendar className="h-6 w-6" />
     },
     {
-      value: 100000,
-      label: "Assets Liquidated",
+      value: 460408,
+      label: "Total Units Liquidated",
       suffix: "+",
       icon: <TrendingUp className="h-6 w-6" />
     },
     {
-      value: 30,
-      label: "States & UTs Covered",
+      value: 8,
+      label:"Departments Served",
       suffix: "",
       icon: <Globe className="h-6 w-6" />
     },

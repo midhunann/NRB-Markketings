@@ -112,7 +112,7 @@ const Header = () => {
                 <Phone size={18} />
               </a>
               <a 
-                href="mailto:info@nrbmarkketings.com"
+                href="mailto:nrbmarkketings@gmail.com"
                 className="p-1.5 rounded-full text-[var(--nude)] transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
                 aria-label="Email us"
               >
@@ -199,9 +199,9 @@ const Header = () => {
                   <span>Call Us</span>
                 </a>
                 <a 
-                  href="mailto:info@nrbmarkketings.com"
+                  href="mailto:nrbmarkketings@gmail.com"
                   className="flex items-center space-x-2 text-[var(--nude)]/90 hover:text-[var(--nude)] transition-colors duration-150"
-                  aria-label="Email us at info@nrbmarkketings.com"
+                  aria-label="Email us at nrbmarkketings@gmail.com"
                 >
                   <Mail size={18} />
                   <span>Email</span>
