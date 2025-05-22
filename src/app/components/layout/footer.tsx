@@ -94,7 +94,7 @@ export default function Footer() {
               {companyInfo.tagline}
             </p>
             <p className="text-sm text-primary-foreground/70 max-w-2xl mx-auto">
-              Trusted by government departments nationwide • Quality assured • Delivered on time
+              Quality assured • Trusted by government departments nationwide • Delivered on time
             </p>
           </div>
 
