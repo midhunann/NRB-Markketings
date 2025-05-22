@@ -5,7 +5,7 @@ import Header from './components/layout/header';
 import Footer from './components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'NRB Markketings - Premium Government Surplus & Industrial Essentials',
+  title: 'NRB Markketings',
   description: 'Premium government‑surplus assets & industrial essentials—reliably sourced, expertly delivered.',
   keywords: 'government supplier, electronics, chemicals, PVC plumbing, seafood, PSDAS, water management',
 };
