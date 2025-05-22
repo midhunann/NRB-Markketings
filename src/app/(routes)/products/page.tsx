@@ -142,9 +142,9 @@ export default function ProductsPage() {
         </p>
       </motion.div>
 
-      {/* Enhanced Category Tabs Navigation - no gap with navbar */}
+      {/* Enhanced Category Tabs Navigation with Curved Corners */}
       <motion.div 
-        className={`sticky top-0 md:top-[60px] z-20 w-full left-0 right-0 bg-[var(--primary)] shadow-md ${
+        className={`sticky top-0 md:top-[60px] z-20 max-w-screen-xl mx-auto bg-[var(--primary)] shadow-md rounded-b-3xl ${
           isScrolled ? 'border-t border-[var(--primary)]' : ''
         }`}
         initial={{ opacity: 0, y: -10 }}
