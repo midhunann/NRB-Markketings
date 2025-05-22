@@ -14,7 +14,8 @@ import {
   TrendingUp,
   Award,
   Globe,
-  ThumbsUp
+  ThumbsUp,
+  Archive
 } from "lucide-react";
 import { 
   fadeIn, 
@@ -28,39 +29,39 @@ export default function AboutPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const timelineRef = useRef(null);
-  
-  const milestones = [
-    {
-      year: "2023",
-      title: "Foundation",
-      description: "NRB Markketings founded as a 1-person startup with the vision to bridge government surplus and market needs.",
-      icon: <Calendar className="h-6 w-6" />
-    },
-    {
-      year: "2024",
-      title: "Regional Expansion",
-      description: "Expanded operations to five states in Southern India, establishing key government partnerships.",
-      icon: <TrendingUp className="h-6 w-6" />
-    },
-    {
-      year: "2024",
-      title: "Product Innovation",
-      description: "Launched our PSDAS (Public Sector Digital Asset System) technology solutions for government facilities.",
-      icon: <Lightbulb className="h-6 w-6" />
-    },
-    {
-      year: "2025",
-      title: "Pan-India Network",
-      description: "Achieved nationwide operations with representation in all major states and union territories.",
-      icon: <Globe className="h-6 w-6" />
-    },
-    {
-      year: "2025",
-      title: "Quality Excellence",
-      description: "Received recognition for 100% client satisfaction rate with zero complaints for three consecutive years.",
-      icon: <Award className="h-6 w-6" />
-    }
-  ];
+
+const milestones = [
+  {
+    year: "2018",
+    title: "Foundation",
+    description: "NRB Markketings founded as a 1-person startup on 12 October 2018, with a vision to bridge government surplus and market needs.",
+    icon: <Calendar className="h-6 w-6" />
+  },
+  {
+    year: "2021",
+    title: "Service Excellence",
+    description: "Achieved 100 % client satisfaction across all Central and State government departments, backed by strict QA and after-sales service protocols.",
+    icon: <Award className="h-6 w-6" />
+  },
+  {
+    year: "2022",
+    title: "Catalog Expansion",
+    description: "Expanded our catalog to over 100 distinct SKUs spanning six major categories—electronics, chemicals, plumbing, seafood, PSDAS, and lighting & electrical.",  
+    icon: <Archive className="h-6 w-6" />
+  },
+  {
+    year: "2024",
+    title: "PSDAS Launch",
+    description: "Launched our PSDAS (Public Sector Digital Asset System), delivering smart, eco-friendly water and power management solutions for government facilities.",
+    icon: <Lightbulb className="h-6 w-6" />
+  },
+  {
+    year: "2025",
+    title: "Pan-India Network",
+    description: "Established an all-India distribution network with operational partnerships in every major state and union territory, reinforcing our tagline as Trend Setter in the industry.",
+    icon: <Globe className="h-6 w-6" />
+  }
+];
 
   const values = [
     {
