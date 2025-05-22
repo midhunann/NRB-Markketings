@@ -36,17 +36,17 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="absolute inset-0 bg-[var(--primary)] opacity-40"></div>
       </div>
       
-      {/* Content Container - Centered with proper vertical alignment */}
-      <div className="container relative z-10 mx-auto px-4 w-full max-w-6xl flex items-center justify-center h-full">
+      {/* Content Container - Same as original for desktop/tablet, improved for mobile */}
+      <div className="container relative z-10 mx-auto px-4 md:px-4 w-full max-w-6xl flex items-center justify-center h-full">
         <motion.div 
-          className="flex flex-col items-center justify-center mx-auto text-center transform -translate-y-16"
+          className="flex flex-col items-center justify-center mx-auto text-center transform md:-translate-y-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Headline - Added whitespace-nowrap and overflow handling */}
+          {/* Headline - Same as original for desktop/tablet, responsive only for mobile */}
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--nude)] whitespace-nowrap overflow-visible w-full"
+            className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-[var(--nude)] leading-tight md:whitespace-nowrap md:overflow-visible md:w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,9 +54,9 @@ export const Hero: React.FC<HeroProps> = ({
             {headline}
           </motion.h1>
           
-          {/* Subheadline - Added whitespace-nowrap and overflow handling */}
+          {/* Subheadline - Same as original for desktop/tablet, responsive only for mobile */}
           <motion.p 
-            className="text-xl md:text-2xl mb-10 text-[var(--nude)]/90 whitespace-nowrap overflow-visible w-full"
+            className="text-base md:text-xl lg:text-2xl mb-6 md:mb-10 text-[var(--nude)]/90 leading-relaxed md:whitespace-nowrap md:overflow-visible md:w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -64,18 +64,18 @@ export const Hero: React.FC<HeroProps> = ({
             {subheadline}
           </motion.p>
           
-          {/* Call-to-Action Button */}
+          {/* Call-to-Action Button - Same as original for desktop/tablet */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Link href={buttonUrl}>
-                <Button 
-                className="bg-[var(--secondary)] text-[var(--secondary-foreground)] rounded-md px-8 py-4 hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-all duration-300 transform hover:scale-105 font-medium shadow-lg text-lg"
-                >
+              <Button 
+                className="bg-[var(--secondary)] text-[var(--secondary-foreground)] rounded-md px-6 md:px-8 py-3 md:py-4 hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-all duration-300 transform hover:scale-105 font-medium shadow-lg text-base md:text-lg"
+              >
                 {buttonText}
-                </Button>
+              </Button>
             </Link>
           </motion.div>
         </motion.div>
