@@ -2,7 +2,7 @@
 
 A modern, responsive corporate website built for NRB Markketings - a government surplus dealer specializing in electronics, chemicals, plumbing supplies, and PSDAS (water management systems).
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 ### Core Stack
 - **Framework**: Next.js 15.3.2 with App Router
@@ -36,7 +36,7 @@ src/
 │   └── layout.tsx         # Root layout
 ```
 
-## 🎨 Design System
+## Design System
 
 ### Color Palette
 - **Primary**: `#2c3b4d` (Dark blue)
@@ -54,7 +54,7 @@ src/
 - Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
 - Fluid typography and spacing
 
-## 🔧 Key Features & Components
+## Key Features & Components
 
 ### 1. Hero Section (`/components/hero/hero.tsx`)
 - Full-viewport height with background image
@@ -87,7 +87,7 @@ src/
 - Performance-optimized motion values
 - Stagger animations for lists
 
-## 📊 Data Architecture
+## Data Architecture
 
 ### Product Categories (`/lib/data.ts`)
 ```typescript
@@ -108,7 +108,7 @@ type ProductCategory = {
 - Features list
 - All data centralized in `/lib/data.ts`
 
-## 🎯 Performance Optimizations
+## Performance Optimizations
 
 ### Image Optimization
 - Next.js Image component with responsive sizing
@@ -146,7 +146,7 @@ Products page supports hash-based category navigation:
 - `/products#plumbing`
 - `/products#psdas`
 
-## 🎨 Styling Architecture
+## Styling Architecture
 
 ### CSS Custom Properties
 ```css
@@ -170,7 +170,7 @@ Products page supports hash-based category navigation:
 - Component-scoped styles when needed
 - Consistent spacing and sizing
 
-## 🚀 Development Setup
+## Development Setup
 
 ### Prerequisites
 - Node.js 18+ 
@@ -194,14 +194,14 @@ npm run lint       # ESLint checks
 - Auto-reload on file changes
 - Error overlay for development
 
-## 📱 Browser Support
+## Browser Support
 
 - Chrome 91+
 - Firefox 90+
 - Safari 14+
 - Edge 91+
 
-## 🔄 State Management
+## State Management
 
 ### Client-Side State
 - React useState for component state
@@ -215,7 +215,7 @@ Static Data (data.ts) → Components → UI Rendering
 URL State ↔ Navigation Components ↔ Product Filters
 ```
 
-## 🎭 Animation Strategy
+## Animation Strategy
 
 ### Motion Philosophy
 - Smooth, purposeful animations
