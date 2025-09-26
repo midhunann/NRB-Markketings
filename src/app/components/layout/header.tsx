@@ -105,7 +105,7 @@ const Header = () => {
 
             <div className="hidden sm:flex items-center space-x-3">
               <a 
-                href="tel:+919496899999"
+                href="tel:0431-4514592"
                 className="p-1.5 rounded-full text-[var(--nude)] transition-all duration-150 ease-in-out hover:text-[var(--secondary)]"
                 aria-label="Call us"
               >
@@ -191,9 +191,9 @@ const Header = () => {
               ))}
               <div className="flex space-x-3 mt-4 px-3 py-2">
                 <a 
-                  href="tel:+919496899999"
+                  href="tel:0431-4514592"
                   className="flex items-center space-x-2 text-[var(--nude)]/90 hover:text-[var(--nude)] transition-colors duration-150"
-                  aria-label="Call us at +91 94968 99999"
+                  aria-label="Call us at 0431-4514592"
                 >
                   <Phone size={18} />
                   <span>Call Us</span>
